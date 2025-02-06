@@ -29,12 +29,12 @@ public class Profiler {
                     bucketArray[i] = array[i] / 10000.0f; // Normalización para Bucket Sort
                 }
 
-                long tInsertion = measureTime(() -> SortingAlgorithms.insertionSort(array.clone()));
-                long tMerge = measureTime(() -> SortingAlgorithms.mergeSort(array.clone()));
-                long tQuick = measureTime(() -> SortingAlgorithms.quickSort(array.clone(), 0, array.length - 1));
-                long tRadix = measureTime(() -> SortingAlgorithms.radixSort(radixArray.clone()));
-                long tBucket = measureTime(() -> SortingAlgorithms.bucketSort(bucketArray.clone()));
-                long tHeap = measureTime(() -> SortingAlgorithms.heapSort(array.clone()));
+                float tInsertion = measureTime(() -> SortingAlgorithms.insertionSort(array.clone()));
+                float tMerge = measureTime(() -> SortingAlgorithms.mergeSort(array.clone()));
+                float tQuick = measureTime(() -> SortingAlgorithms.quickSort(array.clone(), 0, array.length - 1));
+                float tRadix = measureTime(() -> SortingAlgorithms.radixSort(radixArray.clone()));
+                float tBucket = measureTime(() -> SortingAlgorithms.bucketSort(bucketArray.clone()));
+                float tHeap = measureTime(() -> SortingAlgorithms.heapSort(array.clone()));
 
                 writer.write(size + "," + tInsertion + "," + tMerge + "," + tQuick + ","
                         + tRadix + "," + tBucket + "," + tHeap + "\n");
@@ -61,9 +61,9 @@ public class Profiler {
         return numbers;
     }
 
-    private static long measureTime(Runnable sortingAlgorithm) {
+    private static float measureTime(Runnable sortingAlgorithm) {
         long start = System.nanoTime();
         sortingAlgorithm.run();
-        return System.nanoTime() - start;
+        return (float)(System.nanoTime() - start) / 1000000;
     }
 }
