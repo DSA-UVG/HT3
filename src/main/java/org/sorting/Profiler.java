@@ -52,7 +52,10 @@ public class Profiler {
 
             }
 
-            System.out.println("📊 Resultados guardados en " + OUTPUT_CSV);
+                System.out.println("📊 Resultados guardados en " + OUTPUT_CSV);
+                ProcessBuilder pb = new ProcessBuilder("python3", "graph.py", OUTPUT_CSV);
+                pb.start();
+
         } catch (IOException e) {
             System.err.println("Error al escribir en el archivo CSV: " + e.getMessage());
         }
