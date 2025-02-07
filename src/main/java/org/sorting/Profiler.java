@@ -50,8 +50,6 @@ public class Profiler {
 
                 System.out.println("Prueba completada para tamaño: " + size);
 
-                ProcessBuilder pb = new ProcessBuilder("python3", "graph.py", OUTPUT_CSV);
-                pb.start();
             }
 
             System.out.println("📊 Resultados guardados en " + OUTPUT_CSV);
