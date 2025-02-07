@@ -1,6 +1,10 @@
 package org.sorting;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,6 +44,9 @@ public class Profiler {
                         + tRadix + "," + tBucket + "," + tHeap + "\n");
 
                 System.out.println("Prueba completada para tamaño: " + size);
+
+                ProcessBuilder pb = new ProcessBuilder("python3", "graph.py", OUTPUT_CSV);
+                pb.start();
             }
 
             System.out.println("📊 Resultados guardados en " + OUTPUT_CSV);
