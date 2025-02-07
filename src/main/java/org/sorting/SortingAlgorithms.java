@@ -3,9 +3,18 @@ package org.sorting;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+/**
+ * Clase SortingAlgorithms
+ * Contiene implementaciones de algoritmos de ordenamiento.
+ * @author Juan Jose Alvarez
+ */
 public class SortingAlgorithms {
 
+    /**
+     * Ordena un arreglo de números enteros utilizando el algoritmo de ordenamiento por inserción.
+     * @param array Arreglo de números enteros.
+     * @return Arreglo ordenado.
+     */
     public static <T extends Comparable<T>> void insertionSort(T[] array) {
         for (int i = 1; i < array.length; i++) {
             T key = array[i];
@@ -18,6 +27,11 @@ public class SortingAlgorithms {
         }
     }
 
+    /**
+     * Ordena un arreglo de números enteros utilizando el algoritmo de ordenamiento por mezcla.
+     * @param array Arreglo de números enteros.
+     * @return Arreglo ordenado.
+     */
     public static <T extends Comparable<T>> void mergeSort(T[] array) {
         if (array.length < 2) return;
         int mid = array.length / 2;
@@ -31,7 +45,12 @@ public class SortingAlgorithms {
         mergeSort(right);
         merge(array, left, right);
     }
-
+    /**
+     * Combina dos arreglos ordenados en un solo arreglo ordenado.
+     * @param array Arreglo de números enteros.
+     * @param left Arreglo de números enteros.
+     * @param right Arreglo de números enteros.
+     */
     private static <T extends Comparable<T>> void merge(T[] array, T[] left, T[] right) {
         int i = 0, j = 0, k = 0;
         while (i < left.length && j < right.length) {
@@ -44,7 +63,12 @@ public class SortingAlgorithms {
         while (i < left.length) array[k++] = left[i++];
         while (j < right.length) array[k++] = right[j++];
     }
-
+ 
+    /**
+     * Ordena un arreglo de números enteros utilizando el algoritmo de ordenamiento rápido.
+     * @param array Arreglo de números enteros.
+     * @return Arreglo ordenado.
+     */
     public static <T extends Comparable<T>> void quickSort(T[] array, int low, int high) {
         if (low < high) {
             int pivotIndex = partition(array, low, high);
@@ -53,6 +77,13 @@ public class SortingAlgorithms {
         }
     }
 
+    /**
+     * Particiona un arreglo en dos subarreglos.
+     * @param array Arreglo de números enteros.
+     * @param low Índice del primer elemento.
+     * @param high Índice del último elemento.
+     * @return Índice del pivote.
+     */
     private static <T extends Comparable<T>> int partition(T[] array, int low, int high) {
         T pivot = array[high];
         int i = low - 1;
@@ -69,7 +100,12 @@ public class SortingAlgorithms {
         array[high] = temp;
         return i + 1;
     }
-
+ 
+    /**
+     * Ordena un arreglo de números enteros utilizando el algoritmo de ordenamiento por casillas.
+     * @param array Arreglo de números enteros.
+     * @return Arreglo ordenado.
+     */
     public static void radixSort(int[] array) {
         int max = getMax(array);
         for (int exp = 1; max / exp > 0; exp *= 10) {
@@ -77,6 +113,11 @@ public class SortingAlgorithms {
         }
     }
 
+    /**
+     * Ordena un arreglo de números en base a un dígito específico.
+     * @param array Arreglo de números enteros.
+     * @param exp Dígito por el que se ordenará el arreglo.
+     */
     private static void countingSortByDigit(int[] array, int exp) {
         int[] output = new int[array.length];
         int[] count = new int[10];
@@ -90,12 +131,22 @@ public class SortingAlgorithms {
         System.arraycopy(output, 0, array, 0, array.length);
     }
 
+    /**
+     * Obtiene el número máximo de un arreglo.
+     * @param array Arreglo de números enteros.
+     * @return Número máximo.
+     */
     private static int getMax(int[] array) {
         int max = array[0];
         for (int num : array) max = Math.max(max, num);
         return max;
     }
 
+    /**
+     * Ordena un arreglo de números en punto flotante utilizando el algoritmo de ordenamiento por casillas.
+     * @param array Arreglo de números en punto flotante.
+     * @return Arreglo ordenado.
+     */
     public static void bucketSort(float[] array) {
         int n = array.length;
         List<Float>[] buckets = new ArrayList[n];
@@ -112,6 +163,11 @@ public class SortingAlgorithms {
         }
     }
 
+    /**
+     * Ordena un arreglo de números enteros utilizando el algoritmo de ordenamiento por montículos.
+     * @param array Arreglo de números enteros.
+     * @return Arreglo ordenado.
+     */
     public static <T extends Comparable<T>> void heapSort(T[] array) {
         int n = array.length;
         for (int i = n / 2 - 1; i >= 0; i--) heapify(array, n, i);
@@ -123,6 +179,12 @@ public class SortingAlgorithms {
         }
     }
 
+    /**
+     * Convierte un arreglo en un montículo.
+     * @param array Arreglo de números enteros.
+     * @param n Tamaño del montículo.
+     * @param i Índice del nodo raíz.
+     */
     private static <T extends Comparable<T>> void heapify(T[] array, int n, int i) {
         int largest = i, left = 2 * i + 1, right = 2 * i + 2;
         if (left < n && array[left].compareTo(array[largest]) > 0) largest = left;

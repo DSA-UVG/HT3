@@ -8,7 +8,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ *  Clase Profiler 
+ *  Se encarga de leer los números de un archivo, ejecutar los algoritmos de ordenamiento y medir el tiempo de ejecución.
+ *  Los resultados se guardan en un archivo CSV y se genera un gráfico con los resultados usando Python.
+ * @author  Juan Jose Alvarez
+**/
 public class Profiler {
     private static final String FILE_NAME = "numbers.txt";
     private static final String OUTPUT_CSV = "results.csv";
@@ -55,6 +60,10 @@ public class Profiler {
         }
     }
 
+/** 
+ * Método que lee los números de un archivo y los almacena en una lista.
+ * @return List<Integer> Lista de números leídos del archivo.
+*/
     private static List<Integer> readNumbersFromFile() {
         List<Integer> numbers = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
@@ -68,6 +77,11 @@ public class Profiler {
         return numbers;
     }
 
+/**
+ * Método que mide el tiempo de ejecución de un algoritmo de ordenamiento.
+ * @param sortingAlgorithm Algoritmo de ordenamiento a ejecutar.
+ * @return float Tiempo de ejecución en segundos.
+**/
     private static float measureTime(Runnable sortingAlgorithm) {
         long start = System.nanoTime();
         sortingAlgorithm.run();
